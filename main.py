@@ -14,7 +14,7 @@ activity = discord.Activity(type=discord.ActivityType.playing, name='Psychoclown
 
 bot = discord.Bot(
     intents=intents,
-
+    # debug_guilds=[744573401431146508],
     status=status,
     activity=activity
 )
@@ -28,14 +28,8 @@ if __name__ == "__main__":
     bot.run(os.getenv("TOKEN"))
 
 
-async def status_task():
-    while True:
-        await bot.change_presence(activity=discord.Game('Psychoclown_Boot |!help'))
-
-
 @bot.event
 async def on_ready():
     print(f"Wir sind eingeloggt als User {bot.user}")
-    bot.loop.create_task(status_task())
     channel = bot.get_channel(IDs.Bot_sends_id)
     await channel.send('`BOT ONLINE`')
